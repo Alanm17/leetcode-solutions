@@ -106,7 +106,7 @@ void dequeue(){
     if(isEmpty()){
         printf("is empty");
     }
-    printf("shifted element pr: %d  data: %d\n", pq[0].pry, pq[0].data);
+    printf("removed element pr: %d  data: %d\n\n", pq[0].pry, pq[0].data);
     for(int i =1; i < size; i++){
         pq[i -1] = pq[i];
     }
@@ -116,17 +116,21 @@ void prinList(){
     if(isEmpty()){
         printf("the queue has nothin to show\n");
     }
-    
+      
     for(int i = 0; i < size; i++){
         printf("pr: %d  data: %d\n", pq[i].pry, pq[i].data);
     }
+    printf("\n");
 }
 void main(){
+    printf("Data before deletion:\n\n");
     enqueue(34,4);
        enqueue(34,3);
           enqueue(34,2);
              enqueue(34,1);
              prinList();
+              printf("Data after deletion:\n\n");
              dequeue();
-    
+              prinList();
+              return 0;
 }
