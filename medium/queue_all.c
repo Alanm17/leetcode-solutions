@@ -62,3 +62,71 @@ display();
 
     return 0;
 }
+
+// pr queue
+#include <stdio.h>
+#define SIZE 100
+
+struct node{
+    int data;
+    int pry;
+};
+
+struct node pq[SIZE];
+int size =0;
+int isFull(){
+    return size == SIZE;
+}
+
+int isEmpty(){
+    return size == 0;
+}
+
+void enqueue(int data, int pry){
+    if(isFull()){
+        printf("The queue is currently full\n");
+    }
+    
+    pq[size].data = data;
+    pq[size].pry = pry;
+    size++;
+    
+    for(int i = 0; i < size -1; i++){
+        for(int j =0; j < size - i -1; j++){
+            if(pq[j].pry > pq[j+1].pry){
+                struct node temp = pq[j];
+                pq[j] = pq[j+1];
+                pq[j+1] = temp;
+            }
+        }
+    }
+    
+}
+void dequeue(){
+    if(isEmpty()){
+        printf("is empty");
+    }
+    printf("shifted element pr: %d  data: %d\n", pq[0].pry, pq[0].data);
+    for(int i =1; i < size; i++){
+        pq[i -1] = pq[i];
+    }
+    size--;
+}
+void prinList(){
+    if(isEmpty()){
+        printf("the queue has nothin to show\n");
+    }
+    
+    for(int i = 0; i < size; i++){
+        printf("pr: %d  data: %d\n", pq[i].pry, pq[i].data);
+    }
+}
+void main(){
+    enqueue(34,4);
+       enqueue(34,3);
+          enqueue(34,2);
+             enqueue(34,1);
+             prinList();
+             dequeue();
+    
+}
